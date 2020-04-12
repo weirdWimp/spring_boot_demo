@@ -1,0 +1,66 @@
+### Get request with a header
+GET http://localhost:8080/person/info?name=Jason&age=12&gender=male&address=Chengdu
+Accept: application/json
+
+###
+GET http://localhost:8080/person/info/Jason/12
+Accept: application/json
+
+###
+GET http://localhost:8080/person/info/19-12-28
+Accept: application/json
+
+###
+GET http://localhost:8080/person/info/date/19-12-28
+Accept: application/json
+
+###
+GET http://localhost:8080/health
+
+###
+GET http://localhost:8080/health/save_session_attribute
+
+###
+GET http://localhost:8080/health/access_session_attribute
+
+
+###/health/{date}
+GET http://localhost:8080/health/20200222
+
+###
+GET http://localhost:8080/health/convert/2020-02-23
+
+###
+GET http://localhost:8080/health/convert/2020-02-23
+
+###
+GET http://localhost:8080/
+
+###
+GET http://localhost:8080/health/header
+Connection: Keep-Alive
+
+###
+###
+GET https://www.baidu.com/
+Upgrade: HTTP/1.1
+#Max-Forwards: 0
+
+###
+GET http://localhost:8080/validation/basic
+Authorization: Basic Z3Vlc3Q6Z3Vlc3Q=
+
+###
+GET https://passport.weibo.com
+Accept-Charset: UTF-8
+Cookie: login=fbcf7665714907db0b0abdeb31559bf3
+
+###
+GET http://localhost:8080/validation/cache
+If-Modified-Since: Sun, 05 Mar 2020 13:32:04 GMT
+#If-None-Match: "1"
+
+###
+GET http://localhost:8080/product/add
+
+###

@@ -1,0 +1,17 @@
+
+###
+GET http://localhost:8080/mybatis/returnMap
+
+###
+GET http://localhost:8080/mybatis/session-scope
+
+### script
+GET http://localhost:8080/mybatis/script
+
+###
+GET http://localhost:8080/mybatis/page
+
+###
+http://localhost:8080/mybatis/page/transfer
+
+###
