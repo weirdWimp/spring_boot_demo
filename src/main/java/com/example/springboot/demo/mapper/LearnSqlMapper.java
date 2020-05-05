@@ -1,5 +1,6 @@
 package com.example.springboot.demo.mapper;
 
+import com.example.springboot.demo.entity.UserInfo;
 import com.example.springboot.demo.util.UserSqlProvider;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.cursor.Cursor;
@@ -71,5 +72,13 @@ public interface LearnSqlMapper {
             "   </foreach>",
             "</script>"})
     int insertToYwtInfoA(@Param("ywtInfoList") List<Map<String, Object>> ywtInfoList);
+
+    @Insert({"<script>",
+            "insert ignore into user_info (uid, name) values",
+            "   <foreach item='item' index='index' collection='userInfos' open='' separator=',' close=''>",
+            "       (#{item.uid}, #{item.name})",
+            "   </foreach>",
+            "</script>"})
+    int insertToUserInfo(@Param("userInfos") List<UserInfo> userInfos);
 
 }

@@ -1,5 +1,6 @@
 package com.example.springboot.demo.util;
 
+import com.example.springboot.demo.entity.UserInfo;
 import org.apache.ibatis.jdbc.SQL;
 
 import java.util.List;
@@ -61,6 +62,18 @@ public class UserSqlProvider {
             }
         }}.toString();
     }
+
+    public static String insertToUserInfo(List<UserInfo> userInfos) {
+        return new SQL() {{
+            INSERT_INTO("user_info");
+            INTO_COLUMNS("uid", "name");
+            for (UserInfo userInfo : userInfos) {
+                ADD_ROW();
+                INTO_VALUES(userInfo.getUid(), userInfo.getName());
+            }
+        }}.toString();
+    }
+
 
     public static void main(String[] args) {
         System.out.println(selectPersonLike("id001", "firstName", "lastName"));
