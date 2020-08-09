@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class ProfileBasedPropertiesLoader implements EnvironmentPostProcessor {
 
-    private static final String PROPERTIES_FORMAT = "classpath*:/profile/%s/*.properties";
+    private static final String PROPERTIES_FORMAT = "classpath*:/profile/%s/**/*.properties";
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
@@ -26,7 +26,7 @@ public class ProfileBasedPropertiesLoader implements EnvironmentPostProcessor {
 
         MutablePropertySources propertySources = environment.getPropertySources();
 
-        // A  ResourcePatternResolver implementation that is able to resolve a
+        // A ResourcePatternResolver implementation that is able to resolve a
         // specified resource location path into one or more matching Resources
         PathMatchingResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
 
