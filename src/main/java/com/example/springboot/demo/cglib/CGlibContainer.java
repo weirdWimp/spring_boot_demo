@@ -54,7 +54,7 @@ public class CGlibContainer {
         if (!interceptMethodsMap.containsKey(clazz)) {
             return ((T) clazz.newInstance());
         }
-        
+
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(clazz);
         enhancer.setCallback(new AspectIntercept());
@@ -64,9 +64,9 @@ public class CGlibContainer {
     private static class AspectIntercept implements MethodInterceptor {
 
         /**
-         * o 为代理对象 ！！
+         * object 为代理对象 ！！
          *
-         * @param o
+         * @param object
          * @param method
          * @param args
          * @param methodProxy
@@ -74,20 +74,22 @@ public class CGlibContainer {
          * @throws Throwable
          */
         @Override
-        public Object intercept(Object o, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
+        public Object intercept(Object object, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
 
             // 前置通知
-            List<Method> beforeAdviseMethods = getAdviseMethods(o.getClass().getSuperclass(), AdviseType.BEFORE);
+            List<Method> beforeAdviseMethods = getAdviseMethods(object.getClass().getSuperclass(), AdviseType.BEFORE);
             for (Method beforeAdviseMethod : beforeAdviseMethods) {
-                beforeAdviseMethod.invoke(null, o, method, args);
+                // beforeAdviseMethod is a static advise method
+                beforeAdviseMethod.invoke(null, object, method, args);
             }
 
-            Object result = methodProxy.invokeSuper(o, args);
+            Object result = methodProxy.invokeSuper(object, args);
 
             // 后置通知
-            List<Method> afterAdviseMethods = getAdviseMethods(o.getClass().getSuperclass(), AdviseType.BEFORE);
+            List<Method> afterAdviseMethods = getAdviseMethods(object.getClass().getSuperclass(), AdviseType.AFTER);
             for (Method afterAdviseMethod : afterAdviseMethods) {
-                afterAdviseMethod.invoke(null, o, method, args, result);
+                // afterAdviseMethod is a static advise method
+                afterAdviseMethod.invoke(null, object, method, args, result);
             }
 
             return result;

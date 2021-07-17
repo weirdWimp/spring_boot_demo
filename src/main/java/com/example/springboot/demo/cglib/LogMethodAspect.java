@@ -15,11 +15,11 @@ public class LogMethodAspect {
 
     private static final Logger log = LoggerFactory.getLogger(LogMethodAspect.class);
 
-    public void before(Object object, Method method, Object[] args) {
+    public static void before(Object object, Method method, Object[] args) {
         log.info("####### before {} executing, args: {}", method.getName(), Arrays.toString(args));
     }
 
-    public void after(Object object, Method method, Object[] args, Object result) {
+    public static void after(Object object, Method method, Object[] args, Object result) {
         log.info("####### before {} executing, args: {}, result:{}", method.getName(), Arrays.toString(args), result);
     }
 }
