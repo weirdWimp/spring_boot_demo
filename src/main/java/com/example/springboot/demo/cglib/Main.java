@@ -1,6 +1,9 @@
 package com.example.springboot.demo.cglib;
 
 import org.springframework.aop.framework.ProxyFactory;
+import org.springframework.cglib.proxy.MethodProxy;
+
+import java.lang.reflect.Method;
 
 /**
  * @author guo
@@ -15,6 +18,13 @@ public class Main {
         springAopApiTest();
     }
 
+    /**
+     * @see org.springframework.aop.framework.CglibAopProxy.DynamicAdvisedInterceptor#intercept(Object, Method, Object[], MethodProxy)
+     * @see org.springframework.aop.framework.CglibAopProxy.CglibMethodInvocation#proceed()
+     * @see org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor
+     * @see org.springframework.aop.framework.adapter.AfterReturningAdviceInterceptor
+     * @see org.aopalliance.intercept.MethodInterceptor
+     */
     public static void springAopApiTest() {
         A a = new A();
         ProxyFactory proxyFactory = new ProxyFactory(a);
