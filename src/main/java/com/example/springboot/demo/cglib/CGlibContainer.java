@@ -64,7 +64,7 @@ public class CGlibContainer {
     private static class AspectIntercept implements MethodInterceptor {
 
         /**
-         * object 为代理对象 ！！
+         * object 为代理对象 ！！MethodInterceptor
          *
          * @param object
          * @param method

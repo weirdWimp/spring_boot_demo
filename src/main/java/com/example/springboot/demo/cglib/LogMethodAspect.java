@@ -20,6 +20,6 @@ public class LogMethodAspect {
     }
 
     public static void after(Object object, Method method, Object[] args, Object result) {
-        log.info("####### before {} executing, args: {}, result:{}", method.getName(), Arrays.toString(args), result);
+        log.info("####### after {} executing, args: {}, result:{}", method.getName(), Arrays.toString(args), result);
     }
 }

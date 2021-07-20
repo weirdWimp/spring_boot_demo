@@ -8,7 +8,13 @@ public class A {
 
     public String doBusiness() {
         System.out.println("A do business");
+        doInnerBusiness();
         return "A";
+    }
+
+    public String doInnerBusiness() {
+        System.out.println("A do doInnerBusiness");
+        return "InnerA";
     }
 
 }
