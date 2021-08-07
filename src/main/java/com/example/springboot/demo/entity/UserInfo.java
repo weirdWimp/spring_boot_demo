@@ -1,5 +1,8 @@
 package com.example.springboot.demo.entity;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class UserInfo {
 
     private int id;
@@ -9,6 +12,7 @@ public class UserInfo {
     private String name;
 
     public UserInfo() {
+        log.info("############[Create new UserInfo Object]############");
     }
 
     public UserInfo(String uid, String name) {

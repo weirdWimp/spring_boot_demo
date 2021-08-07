@@ -25,8 +25,8 @@ public class DruidDataSourceConfiguration {
     }
 
     @Bean
-    public ServletRegistrationBean servletTLReportServlet() {
-        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
+    public ServletRegistrationBean<StatViewServlet> servletTLReportServlet() {
+        ServletRegistrationBean<StatViewServlet> servletRegistrationBean = new ServletRegistrationBean<>(new StatViewServlet(), "/druid/*");
         servletRegistrationBean.addInitParameter("allow", "127.0.0.1");
         servletRegistrationBean.addInitParameter("loginUsername", "guo");
         servletRegistrationBean.addInitParameter("loginPassword", "123456");

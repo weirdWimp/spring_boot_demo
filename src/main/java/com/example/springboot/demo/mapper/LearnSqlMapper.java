@@ -74,11 +74,17 @@ public interface LearnSqlMapper {
     int insertToYwtInfoA(@Param("ywtInfoList") List<Map<String, Object>> ywtInfoList);
 
     @Insert({"<script>",
-            "insert ignore into user_info (uid, name) values",
+            "insert  into user_info (uid, name) values",
             "   <foreach item='item' index='index' collection='userInfos' open='' separator=',' close=''>",
             "       (#{item.uid}, #{item.name})",
             "   </foreach>",
             "</script>"})
     int insertToUserInfo(@Param("userInfos") List<UserInfo> userInfos);
+
+    @Insert("insert into date_time_info values (#{timeStampStr}, null)")
+    int insertIntoTime(String timeStampStr);
+
+    @Select("select t1 from date_time_info")
+    List<Map<String, Object>> getRow();
 
 }

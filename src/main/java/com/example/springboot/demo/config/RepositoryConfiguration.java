@@ -49,6 +49,7 @@ public class RepositoryConfiguration {
     public PlatformTransactionManager transactionManager(DataSource dataSource) {
         DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
         dataSourceTransactionManager.setDataSource(dataSource);
+        dataSourceTransactionManager.setNestedTransactionAllowed(true);
         return dataSourceTransactionManager;
     }
 }

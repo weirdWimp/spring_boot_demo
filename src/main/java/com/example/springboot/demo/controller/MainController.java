@@ -37,7 +37,7 @@ import java.util.Map;
  * @RestController annotation from Spring MVC is composed of @Controller and @ResponseBody.
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/home")
 public class MainController {
 
     private static final Logger LOG = LoggerFactory.getLogger(MainController.class);
@@ -77,15 +77,15 @@ public class MainController {
 
 
     private void validatorTest() {
-        Person person = new Person();
-
-        DataBinder dataBinder = new DataBinder(person);
-        dataBinder.setValidator(localValidatorFactoryBean);
-
-        dataBinder.validate();
-        for (ObjectError objectError : dataBinder.getBindingResult().getAllErrors()) {
-            System.out.println("objectError = " + objectError.getCode());
-        }
+        // Person person = new Person();
+        //
+        // DataBinder dataBinder = new DataBinder(person);
+        // dataBinder.setValidator(localValidatorFactoryBean);
+        //
+        // dataBinder.validate();
+        // for (ObjectError objectError : dataBinder.getBindingResult().getAllErrors()) {
+        //     System.out.println("objectError = " + objectError.getCode());
+        // }
     }
 
     /**

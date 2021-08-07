@@ -1,6 +1,7 @@
 package com.example.springboot.demo.controller;
 
 import com.example.springboot.demo.service.ConcreteTypeService;
+import com.example.springboot.demo.service.impl.AdviceTestService;
 import com.example.springboot.demo.service.impl.OtherDealService;
 import com.example.springboot.demo.service.impl.DataDealService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
-@RequestMapping("/aop")
+@RequestMapping("/aop/advice")
 public class AopController {
 
     @Autowired
@@ -25,6 +26,9 @@ public class AopController {
     @Autowired
     public ConcreteTypeService testService;
 
+    @Autowired
+    private AdviceTestService adviceTestService;
+
     @GetMapping("/advice")
     @ResponseStatus(HttpStatus.OK)
     public void redirect() {
@@ -33,5 +37,18 @@ public class AopController {
         dataDealService.deal();
         dataDealService.print("create your magic");
     }
+
+
+    @GetMapping("/ex")
+    @ResponseStatus(HttpStatus.OK)
+    public void exception() {
+        try {
+            String things = adviceTestService.getThings();
+        } catch (Exception e) {
+            System.out.println("Catch exception" + e.getMessage());
+        }
+    }
+
+
 
 }

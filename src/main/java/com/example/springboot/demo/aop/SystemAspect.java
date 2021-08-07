@@ -1,6 +1,7 @@
 package com.example.springboot.demo.aop;
 
 import com.example.springboot.demo.entity.Person;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -30,10 +31,9 @@ public class SystemAspect {
     }
 
     /**
-     *
      * Limits matching to join points (the execution of methods when using Spring AOP)
      * where the arguments are instances of the given types - java.io.Serializable
-     *
+     * <p>
      * The alternative way is to declare parameter pattern in execution designator, like:
      * `execution(public * *(java.io.Serializable)) `
      */
@@ -64,5 +64,11 @@ public class SystemAspect {
     @Before(value = "execution(* com.example.springboot.demo.service.impl.DataDealService.print(..)) && args(info)")
     public void beforeAdviceWithParameter(Person info) {
         logger.info("Before Advice Executing - get Person " + info);
+    }
+
+
+    @AfterThrowing(value = "withServiceAndSubPackage()", throwing = "exception")
+    public void exception(IllegalArgumentException exception) {
+        System.err.println("exception from after throwing advice:" + exception.getMessage());
     }
 }
