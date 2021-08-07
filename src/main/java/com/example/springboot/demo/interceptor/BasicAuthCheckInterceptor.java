@@ -20,6 +20,7 @@ import java.util.Base64;
  *
  * @author guo
  * @date 2021/8/7
+ * @see org.springframework.web.servlet.HandlerInterceptor
  */
 @Slf4j
 public class BasicAuthCheckInterceptor extends HandlerInterceptorAdapter {
