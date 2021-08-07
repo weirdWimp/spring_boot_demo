@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 @RestController
@@ -23,7 +24,7 @@ public class MybatisFeatureController {
     private static final Logger LOGGER = LoggerFactory.getLogger(MybatisFeatureController.class);
 
 
-    @Autowired
+    @Resource
     LearnSqlMapper learnSqlMapper;
 
     @Autowired
@@ -135,7 +136,7 @@ public class MybatisFeatureController {
         new Thread(() -> {
             int pageNum = 1;
             int pageSize = 1000;
-            int batchInsertSize = 1000;
+            int batchInsertSize = 10;
 
             boolean isContinue = true;
 
