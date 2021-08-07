@@ -17,8 +17,11 @@ public class HttpCacheController {
      * The example sends an 304 (NOT_MODIFIED) response with an empty body
      * if the comparison to the conditional request headers indicates that the content has not changed.
      * Otherwise, the ETag and Cache-Control headers are added to the response.
-     *
+     * <p>
      * 条件化请求不满足时（ETag 或者 LastModified 条件），返回 304， 表示资源未修改
+     * <p>
+     * GET http://localhost:8080/cache
+     * If-None-Match: "1"
      */
     @GetMapping
     public ResponseEntity<String> cache() {
