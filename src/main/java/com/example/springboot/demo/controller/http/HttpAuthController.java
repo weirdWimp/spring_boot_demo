@@ -17,8 +17,8 @@ import java.util.Base64;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(value = "/validation")
-public class ValidationController {
+@RequestMapping(value = "/auth")
+public class HttpAuthController {
 
     /**
      * http BASIC 认证， 认证用户id和密码通过(:)冒号连接，经Base64编码后，发送给服务器；用户代理为浏览器时，会自动完成Base64的编码转换
@@ -43,7 +43,7 @@ public class ValidationController {
                 .body("Authorization Success");
     }
 
-    @RequestMapping("auth")
+    @RequestMapping("check")
     public ResponseEntity<String> authorizedHandle(@AuthUser String authUser) {
         return ResponseEntity.ok()
                 .cacheControl(CacheControl.noStore())
