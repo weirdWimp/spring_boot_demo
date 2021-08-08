@@ -1,5 +1,6 @@
 package com.example.springboot.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 /**
@@ -9,10 +10,13 @@ import lombok.Data;
 @Data
 public class SimpleResponse<T> {
 
+    @JsonProperty("BODY")
     private T body;
 
+    @JsonProperty("RTNCOD")
     private String rtnCod;
 
+    @JsonProperty("ERRMSG")
     private String errMsg;
 
     public SimpleResponse(T body, String rtnCod, String errMsg) {
@@ -25,7 +29,7 @@ public class SimpleResponse<T> {
         return new SimpleResponse<>(body, "SUC0000", "");
     }
 
-    public static <T> SimpleResponse<T> fail(String errMsg) {
-        return new SimpleResponse<>(null, "ERR0000", errMsg);
+    public static <T> SimpleResponse<T> fail(String rtnCode, String errMsg) {
+        return new SimpleResponse<>(null, rtnCode, errMsg);
     }
 }
