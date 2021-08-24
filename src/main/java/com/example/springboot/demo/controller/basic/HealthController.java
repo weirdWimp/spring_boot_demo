@@ -139,6 +139,7 @@ public class HealthController {
         // 服务器端发往客户端的 Cookie 信息
         final String setCookie = ResponseCookie.from("SPRING_BOOT_COOKIE", "20200301171900")
                 .path("/").maxAge(Duration.ofDays(10))
+                .httpOnly(true)
                 .build().toString();
         headers.set(HttpHeaders.SET_COOKIE, setCookie);
 

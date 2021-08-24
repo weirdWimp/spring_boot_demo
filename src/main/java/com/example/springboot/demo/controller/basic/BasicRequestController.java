@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Controller
-@RequestMapping
+@RequestMapping("/basic")
 public class BasicRequestController {
 
     @GetMapping(path = "user/{userId}/home", params = "wvr=5", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -48,11 +48,11 @@ public class BasicRequestController {
         return "ok";
     }
 
-    @GetMapping("{name}/{age}")
-    @ResponseBody
-    public Person getPersonVar(@ModelAttribute(binding = true) Person person) {
-        return person;
-    }
+    // @GetMapping("{name}/{age}")
+    // @ResponseBody
+    // public Person getPersonVar(@ModelAttribute(binding = true) Person person) {
+    //     return person;
+    // }
 
     @GetMapping("{localDate}")
     @ResponseBody

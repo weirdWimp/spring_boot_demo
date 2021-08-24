@@ -3,14 +3,18 @@ package com.example.springboot.demo.config;
 import com.example.springboot.demo.properties.DisplayProperties;
 import com.example.springboot.demo.servlet.SimpleDebugFilter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.beans.factory.config.PropertyOverrideConfigurer;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -18,7 +22,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.servlet.DispatcherType;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import java.io.IOException;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 
@@ -80,6 +86,15 @@ public class CommonConfiguration {
             }
         };
         return new ServletListenerRegistrationBean<>(listener);
+    }
+
+    @Bean
+    public PropertiesFactoryBean errTableProperties(ApplicationContext applicationContext) throws IOException {
+        Resource[] resources = applicationContext.getResources("classpath*:error/error_*.properties");
+        PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
+        propertiesFactoryBean.setLocations(resources);
+        propertiesFactoryBean.setFileEncoding(StandardCharsets.UTF_8.name());
+        return propertiesFactoryBean;
     }
 
     @Bean
